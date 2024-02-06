@@ -33,22 +33,29 @@ public class Runner {
                 new Tower("Бурдж-Халифа", 828)
         );
         System.out.println("Создали список с дубликатом");
-        towerList.forEach(System.out::println);
-        System.out.println();
         System.out.println("Убираем дубликаты");
-        towerList.stream().distinct().toList().forEach(System.out::println);
+        towerList.stream()
+                .distinct()
+                .toList()
+                .forEach(System.out::println);
         System.out.println();
+
         System.out.println("Выводим первые 3 небоскреба");
-        towerList.stream().limit(3).forEach(System.out::println);
+        towerList.stream()
+                .limit(3)
+                .forEach(System.out::println);
         System.out.println();
+
         System.out.println("Самый высокий небоскреб");
-        towerList.stream().max(Comparator.comparing(Tower::getHeight)).ifPresent(System.out::println);
+        towerList.stream()
+                .max(Comparator.comparing(Tower::getHeight))
+                .ifPresent(System.out::println);
         System.out.println();
+
         System.out.println("Небоскребы выше 1000м");
         towerList.stream().filter(tower -> tower.getHeight() > 1000)
                 .map(Tower::getName)
                 .reduce((towerName1, towerName2) -> towerName1 + ", " + towerName2)
                 .orElseThrow(() -> new RuntimeException("небоскреба выше километра - нет"));
-
     }
 }
